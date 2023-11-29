@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <title>Menu Lateral Responsivo</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    #header {
+      background-color: #333;
+      padding: 10px;
+      color: white;
+      text-align: center;
+    }
+
+    .sidebar{
+      background-color: #f3f3f3;
+      border: 1px solid rgb(145, 144, 144);
+      color: #000000;
+    }
+
+    #sidebar {
+      height: 100%;
+      width: 250px;
+      position: fixed;
+      color: black;
+      top: 0;
+      left: 0;
+      padding-top: 15px;
+      transition: all 0.3s;
+      overflow-y: auto;
+    }
+
+    #sidebar a {
+      display: block;
+      padding: 10px 15px;
+      margin: 5px 0;
+      text-decoration: none;
+      font-size: 15px;
+      color: #818181;
+      transition: color 0.3s;
+      border-bottom: 1px solid #ddd;
+    }
+
+    #sidebar a:hover {
+      color: #C8C8C8;
+    }
+
+    #content {
+      width: calc(100% - 250px);
+      padding: 15px;
+      transition: all 0.3s;
+      margin-left: 250px;
+    }
+
+    .menu-btn {
+      font-size: 30px;
+      cursor: pointer;
+      position: fixed;
+      top: 10px;
+      left: 10px;
+    }
+
+    .close-btn {
+      font-size: 30px;
+      cursor: pointer;
+      position: fixed;
+      top: 10px;
+      left: 0;
+      margin-left: 250px;
+      display: none;
+      transition: all 0.3s;
+      color: #000000; /* Cor do ícone */
+    }
+
+    .dropdown-content {
+      display: none;
+      margin: 0;
+      padding-left: 15px;
+    }
+
+    .dropdown.active .dropdown-content {
+      display: block;
+      position: relative;
+      top: auto;
+      left: auto;
+    }
+
+    .dropdown-option {
+      padding: 10px 0;
+    }
+
+    .dropdown-icon {
+      margin-left: 5px;
+    }
+
+    @media (max-width: 768px) {
+      #sidebar {
+        left: -250px;
+      }
+      #content {
+        margin-left: 0;
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header id="header">
+    <span class="menu-btn" onclick="toggleSidebar()">&#9776; Menu</span>
+    <h1>Seu Header</h1>
+  </header>
+
+  <div class="close-btn sidebar" style="padding: 5px; border-radius: 5px;" onclick="toggleSidebar()">
+    <span class="fas fa-chevron-left"></span>
+  </div>
+
+  <div id="sidebar" class="sidebar">
+    <a href="#">Home</a>
+    <a href="#">Opção 1</a>
+    <a href="#">Opção 2</a>
+    <div class="dropdown">
+      <a href="#" onclick="toggleDropdown(this.parentNode)">Opção 3 <span class="fas fa-caret-down dropdown-icon"></span></a>
+      <div class="dropdown-content">
+        <a href="#" class="dropdown-option">Opção 3 Dropdown 1</a>
+        <a href="#" class="dropdown-option">Opção 3 Dropdown 2</a>
+        <a href="#" class="dropdown-option">Opção 3 Dropdown 3</a>
+      </div>
+    </div>
+    <a href="#">Opção 4</a>
+    <a href="#">Opção 5</a>
+    <a href="#">Opção 6</a>
+    <div class="dropdown">
+      <a href="#" onclick="toggleDropdown(this.parentNode)">Opção 7 <span class="fas fa-caret-down dropdown-icon"></span></a>
+      <div class="dropdown-content">
+        <a href="#" class="dropdown-option">Opção 7 Dropdown 1</a>
+        <a href="#" class="dropdown-option">Opção 7 Dropdown 2</a>
+        <a href="#" class="dropdown-option">Opção 7 Dropdown 3</a>
+      </div>
+    </div>
+    <a href="#">Opção 8</a>
+    <a href="#">Opção 9</a>
+    <a href="#">Opção 10</a>
+  </div>
+
+  <div class="container" id="content" style="border: 1px solid red">
+    <h2>Conteúdo Principal</h2>
+    <p>Seu conteúdo aqui.</p>
+  </div>
+</body>
+</html>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const closeBtn = document.querySelector('.close-btn');
+    if (window.innerWidth > 768) {
+      closeBtn.style.display = 'block';
+    }
+  });
+
+  function toggleSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    const content = document.getElementById('content');
+    const closeBtn = document.querySelector('.close-btn');
+
+    if (sidebar.style.left === '0px' || sidebar.style.left === '') {
+      sidebar.style.left = '-250px';
+      content.style.marginLeft = '0';
+      content.style.width = '100%';
+      closeBtn.style.display = 'none';
+    } else {
+      sidebar.style.left = '0';
+      content.style.marginLeft = '250px';
+      content.style.width = 'calc(100% - 250px)';
+      
+      // Adiciona um listener para detectar o final da transição do sidebar
+      sidebar.addEventListener('transitionend', function() {
+        closeBtn.style.display = 'block';
+      }, { once: true });
+    }
+  }
+
+  function toggleDropdown(dropdown) {
+    dropdown.classList.toggle('active');
+  }
+</script>
