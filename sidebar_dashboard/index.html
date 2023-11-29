@@ -1,3 +1,12 @@
+<!--
+
+  Author: Pablo Tetsuo Sato 
+  GitHub: https://github.com/pablo-tetsuo
+
+  redes sociais: @pablo_sato
+
+  Layout Dashboard de menu lateral responsivo
+-->
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -5,8 +14,14 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <script src="https://kit.fontawesome.com/ab3f175b89.js" crossorigin="anonymous"></script>
   <style>
+    /* Defaults */
+    :root {
+      --cor-primaria:rgb(65, 149, 202);
+    }
+
     body {
       font-family: 'Arial', sans-serif;
       margin: 0;
@@ -15,24 +30,45 @@
       overflow: hidden;
     }
 
+    /* Header */
     #header {
-      background-color: #333;
-      padding: 10px;
-      color: white;
+      background-color: var(--cor-primaria);
+      color: rgb(255, 255, 255);
+      height: 60px;
+      padding: 5px;
       text-align: center;
+      display: flex; 
+      align-items: center;
+    }
+    .menu-titulo {
+      margin-left: 260px; /* Ajuste conforme necessário */
+      transition: margin-left 0.3s;
+      display: flex; 
+      align-items: center;
+    }
+    .logo-header {
+      margin-right: 10px; 
+      min-width: 50px; 
+      min-height: 50px; 
+      max-width: 150px; 
+      max-height: 50px;
+    }
+    .titulo-header {
+      font-weight: bold; 
+      font-size: 18px;
+      text-align: left;
     }
 
-    .sidebar{
+    /* Sidebar */
+    .sidebar {
       background-color: #f3f3f3;
       border: 1px solid rgb(145, 144, 144);
-      color: #000000;
     }
 
     #sidebar {
       height: 100%;
       width: 250px;
       position: fixed;
-      color: black;
       top: 0;
       left: 0;
       padding-top: 15px;
@@ -41,12 +77,13 @@
     }
 
     #sidebar a {
+      color: var(--cor-primaria);
+      font-weight: bold; 
       display: block;
       padding: 10px 15px;
       margin: 5px 0;
       text-decoration: none;
       font-size: 15px;
-      color: #818181;
       transition: color 0.3s;
       border-bottom: 1px solid #ddd;
     }
@@ -63,15 +100,17 @@
     }
 
     .menu-btn {
-      font-size: 30px;
-      cursor: pointer;
-      position: fixed;
-      top: 10px;
-      left: 10px;
+      float: left;
+      color: white;
+      border: 1px solid white;
+      border-radius: 5px;
+    }
+    .menu-btn-icon{
+      color: white;
     }
 
     .close-btn {
-      font-size: 30px;
+      font-size: 20px;
       cursor: pointer;
       position: fixed;
       top: 10px;
@@ -79,7 +118,8 @@
       margin-left: 250px;
       display: none;
       transition: all 0.3s;
-      color: #000000; /* Cor do ícone */
+      padding: 5px; 
+      border-radius: 5px;
     }
 
     .dropdown-content {
@@ -102,7 +142,67 @@
     .dropdown-icon {
       margin-left: 5px;
     }
+  
+    .user-info {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 20px; /* Espaçamento superior */
+    }
+    .user-photo {
+      width: 60px; /* Ajuste conforme necessário */
+      height: 60px; /* Ajuste conforme necessário */
+      border-radius: 50%;
+      margin-bottom: 10px; /* Espaçamento entre a foto e o nome */
+    }
+    .user-name {
+      color: var(--cor-primaria);
+      margin: 0;
+      font-size: 14px; /* Ajuste conforme necessário */
+      font-weight: bold;
+      text-align: center;
+    }
 
+    .exit-sidebar{
+      margin-top: 20px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    /* Estilo da barra de rolagem para navegadores WebKit (Chrome, Safari) */
+    #sidebar::-webkit-scrollbar {
+      width: 12px; /* Largura da barra de rolagem */
+    }
+
+    #sidebar::-webkit-scrollbar-thumb {
+      background-color: var(--cor-primaria); /* Cor do "ponteiro" da barra de rolagem */
+      border-radius: 10px; /* Borda arredondada do "ponteiro" da barra de rolagem */
+    }
+
+    #sidebar::-webkit-scrollbar-track {
+      background-color: #f3f3f3; /* Cor de fundo da barra de rolagem */
+    }
+
+    /* Estilo da barra de rolagem padrão para navegadores não-WebKit (Firefox) */
+    #sidebar {
+      scrollbar-width: thin;
+      scrollbar-color: var(--cor-primaria) #f3f3f3;
+    }
+
+    #sidebar::-webkit-scrollbar {
+      width: 12px; /* Largura da barra de rolagem */
+    }
+
+    #sidebar::-webkit-scrollbar-thumb {
+      background-color: var(--cor-primaria); /* Cor do "ponteiro" da barra de rolagem */
+      border-radius: 10px; /* Borda arredondada do "ponteiro" da barra de rolagem */
+    }
+
+    #sidebar::-webkit-scrollbar-track {
+      background-color: #f3f3f3; /* Cor de fundo da barra de rolagem */
+    }
+
+    /* Para Mobile*/
     @media (max-width: 768px) {
       #sidebar {
         left: -250px;
@@ -111,85 +211,131 @@
         margin-left: 0;
         width: 100%;
       }
+
+      .menu-titulo {
+        margin-left: 10px; /* Ajuste conforme necessário */
+      }
     }
   </style>
 </head>
 <body>
 
   <header id="header">
-    <span class="menu-btn" onclick="toggleSidebar()">&#9776; Menu</span>
-    <h1>Seu Header</h1>
+    <div class="menu-btn">
+        <button type="button" class="btn btn-outline" onclick="toggleSidebar()" title="Menu"><span class="menu-btn-icon">&#9776;</span></button>
+    </div>
+    <div class="menu-titulo">
+      <div>
+        <img src="logo_quadrado.jpg" class="logo-header" alt="Logo">
+      </div>
+      <div>
+        <label class="titulo-header">Nome da Empresa LTDA</label>
+      </div>
+    </div>
   </header>
 
-  <div class="close-btn sidebar" style="padding: 5px; border-radius: 5px;" onclick="toggleSidebar()">
+  <div class="close-btn sidebar" onclick="toggleSidebar()" title="Menu">
     <span class="fas fa-chevron-left"></span>
   </div>
 
   <div id="sidebar" class="sidebar">
-    <a href="#">Home</a>
-    <a href="#">Opção 1</a>
-    <a href="#">Opção 2</a>
+    <div class="user-info">
+      <img src="sem_foto.jpg" alt="Foto do Usuário" class="user-photo">
+      <p class="user-name">Nome do Usuário</p>
+      <p class="user-name">Cargo</p>
+    </div>
+
+    <div class="exit-sidebar">
+      <a href="#" title="Sair"><i class="fa-solid fa-door-open fa-lg"></i>Sair</a>
+    </div>
+
+    <a href="#"><i class="fa-solid fa-house fa-lg"></i></i> Home</a>
+    <a href="#"><i class="fa-solid fa-circle-info fa-lg"></i> Opção 1</a>
+    <a href="#"><i class="fa-solid fa-circle-info fa-lg"></i> Opção 2</a>
     <div class="dropdown">
-      <a href="#" onclick="toggleDropdown(this.parentNode)">Opção 3 <span class="fas fa-caret-down dropdown-icon"></span></a>
+      <a href="#" onclick="toggleDropdown(this.parentNode)"><i class="fa-solid fa-circle-info fa-lg"></i> Opção 3 <span class="fas fa-caret-down dropdown-icon"></span></a>
       <div class="dropdown-content">
-        <a href="#" class="dropdown-option">Opção 3 Dropdown 1</a>
-        <a href="#" class="dropdown-option">Opção 3 Dropdown 2</a>
-        <a href="#" class="dropdown-option">Opção 3 Dropdown 3</a>
+        <a href="#" class="dropdown-option"><i class="fa-solid fa-circle-info fa-lg"></i> Opção 3 Dropdown 1</a>
+        <a href="#" class="dropdown-option"><i class="fa-solid fa-circle-info fa-lg"></i> Opção 3 Dropdown 2</a>
+        <a href="#" class="dropdown-option"><i class="fa-solid fa-circle-info fa-lg"></i> Opção 3 Dropdown 3</a>
       </div>
     </div>
-    <a href="#">Opção 4</a>
-    <a href="#">Opção 5</a>
-    <a href="#">Opção 6</a>
+    <a href="#"><i class="fa-solid fa-circle-info fa-lg"></i> Opção 4</a>
+    <a href="#"><i class="fa-solid fa-circle-info fa-lg"></i> Opção 5</a>
+    <a href="#"><i class="fa-solid fa-circle-info fa-lg"></i> Opção 6</a>
     <div class="dropdown">
-      <a href="#" onclick="toggleDropdown(this.parentNode)">Opção 7 <span class="fas fa-caret-down dropdown-icon"></span></a>
+      <a href="#" onclick="toggleDropdown(this.parentNode)"><i class="fa-solid fa-circle-info fa-lg"></i> Opção 7 <span class="fas fa-caret-down dropdown-icon"></span></a>
       <div class="dropdown-content">
-        <a href="#" class="dropdown-option">Opção 7 Dropdown 1</a>
-        <a href="#" class="dropdown-option">Opção 7 Dropdown 2</a>
-        <a href="#" class="dropdown-option">Opção 7 Dropdown 3</a>
+        <a href="#" class="dropdown-option"><i class="fa-solid fa-circle-info fa-lg"></i> Opção 7 Dropdown 1</a>
+        <a href="#" class="dropdown-option"><i class="fa-solid fa-circle-info fa-lg"></i> Opção 7 Dropdown 2</a>
+        <a href="#" class="dropdown-option"><i class="fa-solid fa-circle-info fa-lg"></i> Opção 7 Dropdown 3</a>
       </div>
     </div>
-    <a href="#">Opção 8</a>
-    <a href="#">Opção 9</a>
-    <a href="#">Opção 10</a>
+    <a href="#"><i class="fa-solid fa-circle-info fa-lg"></i> Opção 8</a>
+    <a href="#"><i class="fa-solid fa-circle-info fa-lg"></i> Opção 9</a>
+    <a href="#"><i class="fa-solid fa-circle-info fa-lg"></i> Opção 10</a>
   </div>
 
-  <div class="container" id="content" style="border: 1px solid red">
+  <div class="container-fluid" id="content" style="border: 1px solid red">
     <h2>Conteúdo Principal</h2>
     <p>Seu conteúdo aqui.</p>
   </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const closeBtn = document.querySelector('.close-btn');
+      if (window.innerWidth > 768) {
+        closeBtn.style.display = 'block';
+      }
+    });
+
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      const content = document.getElementById('content');
+      const closeBtn = document.querySelector('.close-btn');
+      const menuTitulo = document.querySelector('.menu-titulo');
+
+      if (window.innerWidth <= 768) {
+        // Apenas no mobile
+        if (sidebar.style.left === '0px' || sidebar.style.left === '') {
+          sidebar.style.left = '-250px';
+          content.style.marginLeft = '0';
+          content.style.width = '100%';
+          closeBtn.style.display = 'none';
+        } else {
+          sidebar.style.left = '0';
+          content.style.marginLeft = '250px';
+          content.style.width = 'calc(100% - 250px)';
+          closeBtn.style.display = 'block';
+        }
+      } else {
+        // No desktop
+        sidebar.style.transition = 'left 0.3s';
+
+        if (sidebar.style.left === '0px' || sidebar.style.left === '') {
+          sidebar.style.left = '-250px';
+          content.style.marginLeft = '0';
+          content.style.width = '100%';
+          closeBtn.style.display = 'none';
+          menuTitulo.style.marginLeft = '10px'; // Ajuste conforme necessário
+        } else {
+          sidebar.style.left = '0';
+          content.style.marginLeft = '250px';
+          content.style.width = 'calc(100% - 250px)';
+          closeBtn.style.display = 'block';
+
+          // Adiciona um listener para detectar o final da transição do sidebar
+          sidebar.addEventListener('transitionend', function() {
+            menuTitulo.style.marginLeft = '260px'; // Ajuste conforme necessário
+            sidebar.style.transition = ''; // Remove a transição após a abertura
+          }, { once: true });
+        }
+      }
+    }
+
+    function toggleDropdown(dropdown) {
+      dropdown.classList.toggle('active');
+    }
+  </script>
 </body>
 </html>
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
-    const closeBtn = document.querySelector('.close-btn');
-    if (window.innerWidth > 768) {
-      closeBtn.style.display = 'block';
-    }
-  });
-
-  function toggleSidebar() {
-    const sidebar = document.getElementById('sidebar');
-    const content = document.getElementById('content');
-    const closeBtn = document.querySelector('.close-btn');
-
-    if (sidebar.style.left === '0px' || sidebar.style.left === '') {
-      sidebar.style.left = '-250px';
-      content.style.marginLeft = '0';
-      content.style.width = '100%';
-      closeBtn.style.display = 'none';
-    } else {
-      sidebar.style.left = '0';
-      content.style.marginLeft = '250px';
-      content.style.width = 'calc(100% - 250px)';
-      
-      // Adiciona um listener para detectar o final da transição do sidebar
-      sidebar.addEventListener('transitionend', function() {
-        closeBtn.style.display = 'block';
-      }, { once: true });
-    }
-  }
-
-  function toggleDropdown(dropdown) {
-    dropdown.classList.toggle('active');
-  }
-</script>
