@@ -283,6 +283,11 @@
 
   <script>
     document.addEventListener("DOMContentLoaded", function() {
+      // Chama a função toggleSidebar para definir o estado inicial no carregamento da página no mobile
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        toggleSidebar(); 
+      }
+
       const closeBtn = document.querySelector('.close-btn');
       if (window.innerWidth > 768) {
         closeBtn.style.display = 'block';
